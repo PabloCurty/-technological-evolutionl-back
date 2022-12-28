@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { Router } from "express";
+import routes from "./Routes";
+import "./database/Index";
 
 class App {
     constructor() {
@@ -13,10 +14,6 @@ class App {
         this.server.use(cors());
     }
     routes() {
-        const routes = new Router();
-        routes.get('/hello', (req, res) => {
-            res.json({hello: "world"})
-        });
         this.server.use(routes);
     }
 

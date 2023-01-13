@@ -1,15 +1,18 @@
 import mongoose from "mongoose";
 
-const repositorySchema = new mongoose.Schema(
+const experienceSchema = new mongoose.Schema(
     {
-        name: {
+        nameClient: {
             type: String,
             required: true
         },
-        url: {
+        nameProject: {
             type: String,
-            required: true,
-            unique: true
+            required: true
+        },
+        nameTech: {
+            type: String,
+            required: true
         },
         userId: {
             type: String,
@@ -21,4 +24,4 @@ const repositorySchema = new mongoose.Schema(
     }
 )
 
-export default mongoose.model('Repository', repositorySchema)
+export default mongoose.model("Experience", experienceSchema);

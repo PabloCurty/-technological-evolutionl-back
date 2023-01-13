@@ -10,10 +10,12 @@ const experienceSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        nameTech: {
-            type: String,
-            required: true
-        },
+        nameTech: [{
+            type: String
+        }],
+        period: [{
+            type: Date
+        }],
         userId: {
             type: String,
             required: true

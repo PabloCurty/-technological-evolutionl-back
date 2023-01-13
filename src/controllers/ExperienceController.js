@@ -24,7 +24,7 @@ class ExperienceController {
     async create(req, res) { 
         try {
             const { user_id } = req.params;
-            const { nameProject, nameClient, nameTech } = req.body;
+            const { nameProject, nameClient, nameTech, period } = req.body;
             const user = await User.findById(user_id);
             if (!user) {
               return res
@@ -35,7 +35,8 @@ class ExperienceController {
               userId: user_id,
               nameClient,
               nameProject,
-              nameTech
+              nameTech,
+              period,
             });
             if (experience) {
               return res
@@ -48,6 +49,7 @@ class ExperienceController {
               nameClient,
               nameProject,
               nameTech,
+              period,
               userId: user_id,
             });
             return res.status(201).json(newExperience);

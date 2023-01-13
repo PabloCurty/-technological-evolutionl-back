@@ -10,11 +10,17 @@ const experienceSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        language: {
+            type: String
+        },
         nameTech: [{
             type: String
         }],
         period: [{
             type: Date
+        }],
+        directLeaders: [{
+            type: String
         }],
         userId: {
             type: String,

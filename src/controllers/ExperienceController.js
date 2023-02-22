@@ -91,7 +91,7 @@ class ExperienceController {
             });
             if (!experience) {
               return res.status(404).json({
-                message: `Repository Id ${id} do not exists.`,
+                message: `Experience Id ${id} do not exists.`,
               });
             }
 

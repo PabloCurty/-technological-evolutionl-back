@@ -4,17 +4,23 @@ import Experience from "../models/Experience"
 class ExperienceController {
     async index(req, res) {
         try {
-            const { user_id } = req.params;
-            const user = await User.findById(user_id);
-            if (!user) {
-                return res
-                  .status(404)
-                  .json({ message: `User id ${user_id} do not exists.` });
-            }
-            const experiences = await Experience.find({
-              userId: user_id,
-            });
-            return res.status(200).json(experiences);
+          const { user_id } = req.params;
+          const { q } = req.query;
+          const user = await User.findById(user_id);
+          if (!user) {
+              return res
+                .status(404)
+                .json({ message: `User id ${user_id} do not exists.` });
+          }
+          let query = {};
+          if (q) {
+            query = {nameProject: { $regex: q }}
+          }
+          const experiences = await Experience.find({
+            userId: user_id,
+            ...query
+          });
+          return res.status(200).json(experiences);
         } catch (err) {
             console.error(err);
             return res.status(500).json({ error: "Internal server error." });

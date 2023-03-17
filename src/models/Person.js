@@ -15,9 +15,6 @@ const personSchema = new mongoose.Schema(
         role: {
             type: String
         },
-        isTutor: {
-            type: Boolean
-        },
         email: {
             type: String,
             required: true

@@ -30,7 +30,7 @@ class UsersController {
 
   async create(req, res) {
     try {
-      const { email, password } = req.body;
+      const { email, password, isTutor } = req.body;
       const user = await User.findOne({ email });
       if (user) {
         return res
@@ -43,6 +43,7 @@ class UsersController {
       const newUser = await User.create({
         email,
         password: encryptedPassword,
+        isTutor,
       });
 
       return res.status(201).json(newUser);
@@ -55,7 +56,7 @@ class UsersController {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const { email, password } = req.body;
+            const { email, password, isTutor } = req.body;
             const user = await User.findById(id);
             if (!user) {
                 return res
@@ -63,7 +64,7 @@ class UsersController {
                   .json({ message: `User id ${id} do not exists.` });
             }
             const encryptedPassword = await createPasswordHash(password);
-            await user.updateOne({ email, password: encryptedPassword });
+            await user.updateOne({ email, password: encryptedPassword, isTutor });
             return res.status(200).json(user)
         } catch (error) {
             console.error(err);

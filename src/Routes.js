@@ -11,7 +11,7 @@ const routes = new Router();
 routes.post("/sessions", SessionsController.create);
 routes.get("/hello", HelloController.index);
 
-routes.use(Auth);
+//routes.use(Auth);
 
 routes.get("/users", UsersController.index);
 routes.get("/users/:id", UsersController.show);

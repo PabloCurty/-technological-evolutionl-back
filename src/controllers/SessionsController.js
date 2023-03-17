@@ -14,11 +14,12 @@ class SessionsController {
             return res.status(401).json({ error: "Invalid user / password" });
         }
 
-        const { id } = user;
+        const { id, isTutor } = user;
         return res.json({
             user: {
                 id,
-                email
+                email,
+                isTutor
             },
             token: Jwt.sign({ id }, AuthConfig.secret, {
                 expiresIn: AuthConfig.expiresIn
